@@ -9,7 +9,7 @@ export type CabinType = {
 	image: string
 }
 
-export type SeetingsType = {
+export type SettingsType = {
 	id: number
 	created_at: string
 	minBookingLength: number
