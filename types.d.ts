@@ -1,6 +1,6 @@
 export type CabinType = {
-	id: number
-	created_at: string
+	id?: number
+	created_at?: string
 	name: string
 	maxCapacity: number
 	regularPrice: number
