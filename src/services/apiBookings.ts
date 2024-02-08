@@ -1,10 +1,34 @@
 import { getToday } from '../utils/helpers'
 import supabase from './supabase'
 
-export const getBookings = async () => {
-	const { data, error } = await supabase
+export type GetBookingsType = {
+	filter: {
+		field: string
+		value: string
+		method: string
+	} | null
+	sortBy: {
+		field: string
+		direction: string
+	}
+}
+
+export const getBookings = async ({ filter, sortBy }: GetBookingsType) => {
+	let query = supabase
 		.from('bookings')
 		.select('*, cabins(name), guests(fullName, email)')
+
+	// FILTER
+	if (filter) {
+		query = query.eq(filter.field, filter.value)
+	}
+
+	// SORT
+	if (sortBy) {
+		query = query.order(sortBy.field, { ascending: sortBy.direction === 'asc' })
+	}
+
+	const { data, error } = await query
 
 	if (error) {
 		console.error(error)
