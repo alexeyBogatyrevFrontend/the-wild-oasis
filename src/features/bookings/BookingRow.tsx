@@ -9,7 +9,7 @@ import { formatDistanceFromNow } from '../../utils/helpers'
 import { FC } from 'react'
 import { BookingType } from '../../../types'
 import Menus from '../../ui/Menus'
-import { HiEye } from 'react-icons/hi2'
+import { HiArrowDownOnSquare, HiEye } from 'react-icons/hi2'
 import { useNavigate } from 'react-router-dom'
 
 const Cabin = styled.div`
@@ -101,6 +101,15 @@ const BookingRow: FC<BookingRowType> = ({
 					>
 						See details
 					</Menus.Button>
+
+					{status === 'unconfirmed' && (
+						<Menus.Button
+							icon={<HiArrowDownOnSquare />}
+							onClick={() => navigate(`/checkin/${bookingId}`)}
+						>
+							Check in
+						</Menus.Button>
+					)}
 				</Menus.List>
 			</Menus.Menu>
 		</Table.Row>
