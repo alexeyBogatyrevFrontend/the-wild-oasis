@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2'
 import { useSearchParams } from 'react-router-dom'
 import styled from 'styled-components'
+import { PAGE_SIZE } from '../utils/constants'
 
 type PaginationButtonPropsType = {
 	active?: boolean
@@ -66,8 +67,6 @@ const PaginationButton = styled.button<PaginationButtonPropsType>`
 type PaginationType = {
 	count: number
 }
-
-const PAGE_SIZE = 10
 
 const Pagination: FC<PaginationType> = ({ count }) => {
 	const [searchParams, setSearchParams] = useSearchParams()
