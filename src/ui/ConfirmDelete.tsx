@@ -22,10 +22,10 @@ const StyledConfirmDelete = styled.div`
 `
 
 type ConfirmDeleteType = {
-	resourceName: string
-	onConfirm: () => void
-	disabled: boolean
-	onCloseModal: () => void
+	resourceName?: string
+	onConfirm?: () => void
+	disabled?: boolean
+	onCloseModal?: () => void
 }
 
 const ConfirmDelete: FC<ConfirmDeleteType> = ({

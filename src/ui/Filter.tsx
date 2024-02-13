@@ -57,6 +57,9 @@ const Filter: FC<FilterType> = ({ filterField, options }) => {
 
 	const handleClick = (value: string) => {
 		searchParams.set(filterField, value)
+
+		if (searchParams.get('page')) searchParams.set('page', '1')
+
 		setSearchParams(searchParams)
 	}
 
