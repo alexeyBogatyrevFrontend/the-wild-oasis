@@ -7,7 +7,8 @@ export const useLogin = () => {
 	const navigate = useNavigate()
 
 	const { mutate: login, isPending: isLogging } = useMutation({
-		mutationFn: ({ email, password }) => loginApi({ email, password }),
+		mutationFn: ({ email, password }: { email: string; password: string }) =>
+			loginApi({ email, password }),
 		onSuccess: () => {
 			navigate('/dashboard')
 		},
