@@ -1,17 +1,29 @@
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import Button from '../../ui/Button'
 import Form from '../../ui/Form'
 import FormRow from '../../ui/FormRow'
 import Input from '../../ui/Input'
 import { useSignup } from './useSignup'
 
+type FormDataType = {
+	fullName: string
+	email: string
+	password: string
+	passwordConfirm: string
+}
+
 function SignupForm() {
-	const { register, formState, getValues, handleSubmit, reset } = useForm()
+	const { register, formState, getValues, handleSubmit, reset } =
+		useForm<FormDataType>()
 	const { errors } = formState
 
 	const { signup, isPending } = useSignup()
 
-	const onSubmit = ({ fullName, email, password }) => {
+	const onSubmit: SubmitHandler<FormDataType> = ({
+		fullName,
+		email,
+		password,
+	}) => {
 		signup({ fullName, email, password }, { onSettled: () => reset() })
 	}
 
