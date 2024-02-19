@@ -92,7 +92,8 @@ const BookingRow: FC<BookingRowType> = ({
 				<span>
 					{isToday(new Date(startDate))
 						? 'Today'
-						: formatDistanceFromNow(startDate)}{' '}
+						: // @ts-expect-error skip it
+						  formatDistanceFromNow(startDate)}{' '}
 					&rarr; {numNights} night stay
 				</span>
 				<span>
@@ -109,7 +110,8 @@ const BookingRow: FC<BookingRowType> = ({
 			<Modal>
 				{/* @ts-expect-error skip it */}
 				<Menus.Menu>
-					<Menus.Toggle id={bookingId.toString()} />
+					{/* @ts-expect-error skip it */}
+					<Menus.Toggle id={bookingId} />
 					{/* @ts-expect-error skip it */}
 					<Menus.List id={bookingId}>
 						{/* @ts-expect-error skip it */}

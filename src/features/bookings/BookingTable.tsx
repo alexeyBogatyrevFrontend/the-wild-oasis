@@ -27,7 +27,9 @@ const BookingTable = () => {
 
 				<Table.Body
 					data={bookings ? bookings : []}
-					render={booking => <BookingRow key={booking.id} booking={booking} />}
+					render={booking => (
+						<BookingRow key={booking.id} booking={booking as any} />
+					)}
 				/>
 
 				{/* @ts-expect-error skip it */}

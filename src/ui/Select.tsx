@@ -1,11 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 
-type StyledSelectProps = {
-	inputType: string
-}
-
-const StyledSelect = styled.select<StyledSelectProps>`
+const StyledSelect = styled.select<{ inputType: string }>`
 	font-size: 1.4rem;
 	padding: 0.8rem 1.2rem;
 	border: 1px solid
@@ -27,13 +23,13 @@ type OptionsType = {
 type SelectProps = {
 	options: OptionsType[]
 	value: string
-	inputType: string // Замените inputType на свойство, которое вы хотите использовать
+	inputType: string
 	onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
 }
 
 const Select: FC<SelectProps> = ({ options, value, onChange, inputType }) => {
 	return (
-		<StyledSelect inputType={inputType} value={value} onChange={onChange}>
+		<StyledSelect value={value} onChange={onChange} inputType={inputType}>
 			{options.map(option => (
 				<option key={option.value} value={option.value}>
 					{option.label}
