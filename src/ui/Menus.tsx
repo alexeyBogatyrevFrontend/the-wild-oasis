@@ -118,6 +118,8 @@ const Toggle: FC<{ id: string }> = ({ id }) => {
 	const { openId, close, open, setPosition } = useContext(MenusContext)
 
 	const handleClick = (e: MouseEvent) => {
+		e.stopPropagation()
+
 		const rect = e.currentTarget.getBoundingClientRect()
 		setPosition({
 			x: window.innerWidth - rect.width - rect.x,
@@ -137,7 +139,7 @@ const Toggle: FC<{ id: string }> = ({ id }) => {
 const List: FC<{ id: string }> = ({ id, children }) => {
 	const { openId, position, close } = useContext(MenusContext)
 
-	const ref = useOutsideClick(close)
+	const ref = useOutsideClick(close, false)
 
 	if (openId !== id) return null
 
