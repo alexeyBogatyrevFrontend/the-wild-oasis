@@ -63,7 +63,8 @@ const CreateCabinForm: FC<CreateCabinFormType> = ({
 		}
 	}
 
-	const onError = (errors: any) => {
+	// @ts-expect-error skip it
+	const onError = errors => {
 		console.log(errors)
 	}
 

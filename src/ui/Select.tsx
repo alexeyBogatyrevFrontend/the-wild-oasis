@@ -1,12 +1,16 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 
-const StyledSelect = styled.select`
+type StyledSelectProps = {
+	inputType: string
+}
+
+const StyledSelect = styled.select<StyledSelectProps>`
 	font-size: 1.4rem;
 	padding: 0.8rem 1.2rem;
 	border: 1px solid
 		${props =>
-			props.type === 'white'
+			props.inputType === 'white'
 				? 'var(--color-grey-100)'
 				: 'var(--color-grey-300)'};
 	border-radius: var(--border-radius-sm);
@@ -15,21 +19,21 @@ const StyledSelect = styled.select`
 	box-shadow: var(--shadow-sm);
 `
 
-type optionsType = {
+type OptionsType = {
 	value: string
 	label: string
 }
 
-type SelectType = {
-	options: optionsType[]
+type SelectProps = {
+	options: OptionsType[]
 	value: string
-	type: string
-	onChange: () => void
+	inputType: string // Замените inputType на свойство, которое вы хотите использовать
+	onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
 }
 
-const Select: FC<SelectType> = ({ options, value, onChange, type }) => {
+const Select: FC<SelectProps> = ({ options, value, onChange, inputType }) => {
 	return (
-		<StyledSelect value={value} onChange={onChange} type={type}>
+		<StyledSelect inputType={inputType} value={value} onChange={onChange}>
 			{options.map(option => (
 				<option key={option.value} value={option.value}>
 					{option.label}

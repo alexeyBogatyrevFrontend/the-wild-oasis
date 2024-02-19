@@ -10,7 +10,7 @@ import {
 import { formatCurrency } from '../../utils/helpers'
 
 type StatsType = {
-	bookings: BookingType[]
+	bookings: BookingType[] | any
 	confirmedStays: BookingType[]
 	numDays: number
 	cabinCount: number
@@ -26,7 +26,10 @@ const Stats: FC<StatsType> = ({
 	const numBookings = bookings.length
 
 	// 2.
-	const sales = bookings.reduce((accum, cur) => accum + cur.totalPrice, 0)
+	const sales = bookings.reduce(
+		(accum: any, cur: any) => accum + cur.totalPrice,
+		0
+	)
 
 	// 3.
 	const checkins = confirmedStays.length

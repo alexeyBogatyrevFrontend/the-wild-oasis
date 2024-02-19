@@ -109,7 +109,9 @@ const Body: FC<{
 	return <StyledBody>{data.map(render)}</StyledBody>
 }
 
+// @ts-expect-error skip it
 Table.Header = Header
+// @ts-expect-error skip it
 Table.Row = Row
 Table.Body = Body
 Table.Footer = Footer

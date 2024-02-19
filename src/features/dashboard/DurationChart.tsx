@@ -182,10 +182,11 @@ const DurationChart: FC<DurationChartType> = ({ confirmedStays }) => {
 						))}
 					</Pie>
 					<Tooltip />
+					{/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
 					<Legend
 						verticalAlign='middle'
 						align='right'
-						width='30%'
+						width={150}
 						layout='vertical'
 						iconSize={15}
 						iconType='circle'

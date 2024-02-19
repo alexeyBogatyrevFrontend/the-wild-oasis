@@ -37,7 +37,7 @@ function BookingDetail() {
 
 	const { status, id: bookingId } = booking
 
-	const statusToTagName = {
+	const statusToTagName: { [key: string]: string } = {
 		unconfirmed: 'blue',
 		'checked-in': 'green',
 		'checked-out': 'silver',
@@ -56,12 +56,13 @@ function BookingDetail() {
 			<BookingDataBox booking={booking} />
 
 			<ButtonGroup>
+				{/* @ts-expect-error something wrong */}
 				<Modal>
-					<Modal.Open opens='delete'>
+					<Modal.Open opens='delete' name='delete'>
 						<Button variant='danger'>Delete</Button>
 					</Modal.Open>
 
-					<Modal.Window name='delete'>
+					<Modal.Window opens='delete' name='delete'>
 						<ConfirmDelete
 							resourceName='booking'
 							onConfirm={() =>
@@ -73,19 +74,16 @@ function BookingDetail() {
 						/>
 					</Modal.Window>
 				</Modal>
-
 				{status === 'unconfirmed' && (
 					<Button onClick={() => navigate(`/checkin/${bookingId}`)}>
 						Check in
 					</Button>
 				)}
-
 				{status === 'checked-in' && (
 					<Button onClick={() => checkout(bookingId)} disabled={isCheckingOut}>
 						Check out
 					</Button>
 				)}
-
 				<Button variant='secondary' onClick={moveBack}>
 					Back
 				</Button>

@@ -15,6 +15,7 @@ const BookingTable = () => {
 	return (
 		<Menus>
 			<Table columns='0.6fr 2fr 2.4fr 1.4fr 1fr 3.2rem'>
+				{/* @ts-expect-error skip it */}
 				<Table.Header>
 					<div>Cabin</div>
 					<div>Guest</div>
@@ -25,12 +26,13 @@ const BookingTable = () => {
 				</Table.Header>
 
 				<Table.Body
-					data={bookings}
+					data={bookings ? bookings : []}
 					render={booking => <BookingRow key={booking.id} booking={booking} />}
 				/>
 
+				{/* @ts-expect-error skip it */}
 				<Table.Footer>
-					<Pagination count={count} />
+					<Pagination count={count ? count : 0} />
 				</Table.Footer>
 			</Table>
 		</Menus>

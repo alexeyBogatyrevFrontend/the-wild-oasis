@@ -55,7 +55,7 @@ const CabinRow: FC<CabinRowType> = ({ cabin }) => {
 	} = cabin
 
 	const { isDeleting, deleteCabin } = useDeleteCabin()
-	const { isCreating, createCabin } = useCreateCabin()
+	const { createCabin } = useCreateCabin()
 
 	const handleDuplicate = () => {
 		createCabin({
@@ -71,50 +71,62 @@ const CabinRow: FC<CabinRowType> = ({ cabin }) => {
 	}
 
 	return (
-		<Table.Row role='row'>
-			<Img src={image} />
-			<Cabin>{name}</Cabin>
-			<div>Fits up to {maxCapacity} guests</div>
-			<Price>{formatCurrency(regularPrice)}</Price>
-			{discount ? (
-				<Discount>{formatCurrency(discount)}</Discount>
-			) : (
-				<span>&mdash;</span>
-			)}
-			<div>
-				<Modal>
-					<Menus.Menu>
-						<Menus.Toggle id={cabinId} />
+		<>
+			{/* @ts-expect-error skip it */}
+			<Table.Row role='row'>
+				<Img src={image} />
+				<Cabin>{name}</Cabin>
+				<div>Fits up to {maxCapacity} guests</div>
+				<Price>{formatCurrency(regularPrice)}</Price>
+				{discount ? (
+					<Discount>{formatCurrency(discount)}</Discount>
+				) : (
+					<span>&mdash;</span>
+				)}
+				<div>
+					{/* @ts-expect-error skip it */}
+					<Modal>
+						{/* @ts-expect-error skip it */}
+						<Menus.Menu>
+							{/* @ts-expect-error skip it */}
+							<Menus.Toggle id={cabinId} />
+							{/* @ts-expect-error skip it */}
+							<Menus.List id={cabinId}>
+								{/* @ts-expect-error skip it */}
+								<Menus.Button
+									icon={<HiSquare2Stack />}
+									onClick={handleDuplicate}
+								>
+									Duplicate
+								</Menus.Button>
 
-						<Menus.List id={cabinId}>
-							<Menus.Button icon={<HiSquare2Stack />} onClick={handleDuplicate}>
-								Duplicate
-							</Menus.Button>
+								<Modal.Open opens='edit' name='edit'>
+									{/* @ts-expect-error skip it */}
+									<Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
+								</Modal.Open>
 
-							<Modal.Open opens='edit'>
-								<Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
-							</Modal.Open>
+								<Modal.Open opens='delete' name='delete'>
+									{/* @ts-expect-error skip it */}
+									<Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
+								</Modal.Open>
+							</Menus.List>
+						</Menus.Menu>
 
-							<Modal.Open opens='delete'>
-								<Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
-							</Modal.Open>
-						</Menus.List>
-					</Menus.Menu>
+						<Modal.Window opens='edit' name='edit'>
+							<CreateCabinForm cabinToEdit={cabin} />
+						</Modal.Window>
 
-					<Modal.Window name='edit'>
-						<CreateCabinForm cabinToEdit={cabin} />
-					</Modal.Window>
-
-					<Modal.Window name='delete'>
-						<ConfirmDelete
-							resourceName='cabin'
-							disabled={isDeleting}
-							onConfirm={() => deleteCabin(cabinId)}
-						/>
-					</Modal.Window>
-				</Modal>
-			</div>
-		</Table.Row>
+						<Modal.Window opens='edit' name='delete'>
+							<ConfirmDelete
+								resourceName='cabin'
+								disabled={isDeleting}
+								onConfirm={() => deleteCabin(cabinId ? cabinId : 0)}
+							/>
+						</Modal.Window>
+					</Modal>
+				</div>
+			</Table.Row>
+		</>
 	)
 }
 

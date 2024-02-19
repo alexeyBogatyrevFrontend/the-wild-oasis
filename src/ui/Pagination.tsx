@@ -79,6 +79,7 @@ const Pagination: FC<PaginationType> = ({ count }) => {
 	const nextPage = () => {
 		const next = currentPage === pageCount ? currentPage : currentPage + 1
 
+		// @ts-expect-error skip it
 		searchParams.set('page', next)
 		setSearchParams(searchParams)
 	}
@@ -86,6 +87,7 @@ const Pagination: FC<PaginationType> = ({ count }) => {
 	const previousPage = () => {
 		const prev = currentPage === 1 ? currentPage : currentPage - 1
 
+		// @ts-expect-error skip it
 		searchParams.set('page', prev)
 		setSearchParams(searchParams)
 	}

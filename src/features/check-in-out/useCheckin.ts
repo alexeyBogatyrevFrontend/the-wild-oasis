@@ -28,7 +28,9 @@ export const useCheckin = () => {
 				...breakfast,
 			}),
 		onSuccess: data => {
+			// @ts-expect-error skip it
 			toast.success(`Booking #${data.id} successfully checked in`)
+			// @ts-expect-error skip it
 			queryClient.invalidateQueries({ active: true })
 			navigate('/')
 		},

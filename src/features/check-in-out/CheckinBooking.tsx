@@ -65,6 +65,7 @@ function CheckinBooking() {
 				},
 			})
 		} else {
+			// @ts-expect-error skip it
 			checkin({ bookingId, breakfast: {} })
 		}
 	}

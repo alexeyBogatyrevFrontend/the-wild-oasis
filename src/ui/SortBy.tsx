@@ -2,20 +2,20 @@ import { FC } from 'react'
 import Select from './Select'
 import { useSearchParams } from 'react-router-dom'
 
-type optionsType = {
+type OptionsType = {
 	value: string
 	label: string
 }
 
 type SortByType = {
-	options: optionsType[]
+	options: OptionsType[]
 }
 
 const SortBy: FC<SortByType> = ({ options }) => {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const sortBy = searchParams.get('sortBy') || ''
 
-	const handleChange = e => {
+	const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		searchParams.set('sortBy', e.target.value)
 
 		setSearchParams(searchParams)
@@ -25,7 +25,7 @@ const SortBy: FC<SortByType> = ({ options }) => {
 		<Select
 			options={options}
 			value={sortBy}
-			type='white'
+			inputType='white'
 			onChange={handleChange}
 		/>
 	)

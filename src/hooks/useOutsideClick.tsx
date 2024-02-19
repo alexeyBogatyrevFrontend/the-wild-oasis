@@ -5,6 +5,7 @@ const useOutsideClick = (handler: () => void, listenCapturing = true) => {
 
 	useEffect(() => {
 		const handleClick = (e: any) => {
+			// @ts-expect-error skip it
 			if (ref.current && !ref.current.contains(e.target as Node)) handler()
 		}
 

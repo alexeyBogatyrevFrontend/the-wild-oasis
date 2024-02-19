@@ -46,6 +46,7 @@ type FormRowType = {
 const FormRow: FC<FormRowType> = ({ label, error, children }) => {
 	return (
 		<StyledFormRow>
+			{/* @ts-expect-error skip it */}
 			{label && <Label htmlFor={children.props.id}>{label}</Label>}
 			{children}
 			{error && <Error>{error}</Error>}

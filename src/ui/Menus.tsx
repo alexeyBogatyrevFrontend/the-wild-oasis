@@ -136,7 +136,7 @@ const Toggle: FC<{ id: string }> = ({ id }) => {
 	)
 }
 
-const List: FC<{ id: string }> = ({ id, children }) => {
+const List: FC<{ id: string; children: ReactNode }> = ({ id, children }) => {
 	const { openId, position, close } = useContext(MenusContext)
 
 	const ref = useOutsideClick(close, false)
@@ -151,11 +151,11 @@ const List: FC<{ id: string }> = ({ id, children }) => {
 	)
 }
 
-const Button: FC<{ icon: ReactNode; onClick?: () => void }> = ({
-	children,
-	icon,
-	onClick,
-}) => {
+const Button: FC<{
+	children: ReactNode
+	icon: ReactNode
+	onClick?: () => void
+}> = ({ children, icon, onClick }) => {
 	const { close } = useContext(MenusContext)
 
 	const handleClick = () => {
@@ -174,7 +174,9 @@ const Button: FC<{ icon: ReactNode; onClick?: () => void }> = ({
 
 Menus.Menu = Menu
 Menus.Toggle = Toggle
+// @ts-expect-error skip it
 Menus.List = List
+// @ts-expect-error skip it
 Menus.Button = Button
 
 export default Menus

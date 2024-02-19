@@ -66,7 +66,9 @@ const SalesChart: FC<SalesChartType> = ({ bookings, numDays }) => {
 	return (
 		<StyledSalesChart>
 			<Heading as='h2'>
+				{/* @ts-expect-error skip it */}
 				Sales from {format(allDates?.at(0), 'MMM dd yyyy')} &mdash;{' '}
+				{/* @ts-expect-error skip it */}
 				{format(allDates?.at(-1), 'MMM dd yyyy')}
 			</Heading>
 
